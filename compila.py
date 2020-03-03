@@ -2,8 +2,8 @@ import os
 import pandas as pd
 import numpy as np
 
-pastaT = 'D:/Drive UFRN/Doutorado/Resultados/Artigo GRRS/Analise IND/'
-pastaI = 'D:/Drive UFRN/Doutorado/Resultados/Artigo GRRS/Analise TRAN/'
+pastaT = 'C:/Users/brunn/Google Drive/Doutorado/Resultados/Artigo GRRS/Analise IND/'
+pastaI = 'C:/Users/brunn/Google Drive/Doutorado/Resultados/Artigo GRRS/Analise TRAN/'
 
 caminhosT = [os.path.join(pastaT, nome) for nome in os.listdir(pastaT)]
 caminhosI = [os.path.join(pastaI, nome) for nome in os.listdir(pastaI)]
@@ -24,11 +24,10 @@ for caminho in caminhosI:
     tabela[nome[-1]] = linha
 
 tabela = tabela.T
-tabela.to_csv('D:\Drive UFRN\Doutorado\Resultados\Artigo GRRS\Analise Final/tabela_kappa_I.csv')
+tabela.to_csv('C:/Users/brunn/Google Drive/Doutorado/Resultados/Artigo GRRS/Analise Final/tabela_kappa_I.csv')
 
-
-tabela1 = pd.read_csv('D:/Drive UFRN/Doutorado/Resultados/Artigo GRRS/Analise Final/tabela_kappa_T.csv')
-tabela2 = pd.read_csv('D:/Drive UFRN/Doutorado/Resultados/Artigo GRRS/Analise Final/tabela_kappa_I.csv')
+tabela1 = pd.read_csv('C:/Users/brunn/Google Drive/Doutorado/Resultados/Artigo GRRS/Analise Final/tabela_acuracia_T.csv')
+tabela2 = pd.read_csv('C:/Users/brunn/Google Drive/Doutorado/Resultados/Artigo GRRS/Analise Final/tabela_kappa_T.csv')
 
 nomes = ['Co-training - KNN', 
          'Co-training - LR', 
@@ -51,16 +50,19 @@ nomes = ['Co-training - KNN',
          'Tri-Training - RF',
          'Tri-Training - SVM']
 
-resultado = pd.DataFrame()
-resultado['MODELOS'] = nomes
 colunas = tabela1.columns.values
-colunas = colunas[1:-1]
+colunas = colunas[1:]
 nomes_colunas = ['50', '100' , '150', '200', '250', '300']
 
+resultado1 = pd.DataFrame()
+resultado1['MODELOS'] = nomes
 for i,c in enumerate(colunas):
-    resultado[nomes_colunas[i]] = tabela1[c]
-    
+    resultado1[nomes_colunas[i]] = tabela1[c]
+
+resultado2 = pd.DataFrame()
+resultado2['MODELOS'] = nomes
 for i,c in enumerate(colunas):
-    resultado[nomes_colunas[i]+'T'] = tabela2[c]
-    
-resultado.to_csv('D:/Drive UFRN/Doutorado/Resultados/Artigo GRRS/Analise Final/tabela_kappa.csv')
+    resultado2[nomes_colunas[i]] = tabela2[c]
+
+resultado = pd.concat([resultado1, resultado2])
+resultado.to_csv('C:/Users/brunn/Google Drive/Doutorado/Resultados/Artigo GRRS/Analise Final/tabela_transdutivo.csv', index=False)

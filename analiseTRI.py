@@ -24,7 +24,7 @@ modelo = 'KMEANS'
 
 for i, p in enumerate(porcentagem):
     
-    resultado = pd.read_csv('C:/Users/brunn/Google Drive/Doutorado/Resultados/Artigo GRRS/Resultados Skmeans/resultado_'+modelo+'_'+str(p)+'.csv')
+    resultado = pd.read_csv('C:/Users/brunn/Google Drive/Doutorado/Resultados/Artigo GRRS/Resultados Skmeans/resultado_'+modelo+'_T'+str(p)+'.csv')
     
     acu = []
     kap = []    
@@ -46,4 +46,4 @@ tabela['DPA'] = dpa
 tabela['KAPPA'] = kappa
 tabela['DPK'] = dpk
 
-tabela.to_csv('C:/Users/brunn/Google Drive/Doutorado/Resultados/Artigo GRRS/Analise/RESULTADO_'+modelo+'_INDUTIVO.csv', index=False)
+tabela.to_csv('C:/Users/brunn/Google Drive/Doutorado/Resultados/Artigo GRRS/Analise/RESULTADO_'+modelo+'_TRAN.csv', index=False)
