@@ -2,15 +2,15 @@ import os
 import pandas as pd
 import numpy as np
 
-pastaT = 'C:/Users/brunn/Google Drive/Doutorado/Resultados/Artigo GRRS/Analise IND/'
-pastaI = 'C:/Users/brunn/Google Drive/Doutorado/Resultados/Artigo GRRS/Analise TRAN/'
+pastaT = 'D:/Drive UFRN/Doutorado/Resultados/Artigo GRRS/Analise IND/'
+pastaI = 'D:/Drive UFRN/Doutorado/Resultados/Artigo GRRS/Analise TRAN/'
 
 caminhosT = [os.path.join(pastaT, nome) for nome in os.listdir(pastaT)]
 caminhosI = [os.path.join(pastaI, nome) for nome in os.listdir(pastaI)]
 
 tabela = pd.DataFrame()
 
-for caminho in caminhosI:
+for caminho in caminhosT:
     
     dados = pd.read_csv(caminho)
     acuracia = np.round(dados['KAPPA'].values, 3)
@@ -24,10 +24,10 @@ for caminho in caminhosI:
     tabela[nome[-1]] = linha
 
 tabela = tabela.T
-tabela.to_csv('C:/Users/brunn/Google Drive/Doutorado/Resultados/Artigo GRRS/Analise Final/tabela_kappa_I.csv')
+tabela.to_csv('D:/Drive UFRN/Doutorado/Resultados/Artigo GRRS/Analise Final/tabela_kappa_T.csv')
 
-tabela1 = pd.read_csv('C:/Users/brunn/Google Drive/Doutorado/Resultados/Artigo GRRS/Analise Final/tabela_acuracia_T.csv')
-tabela2 = pd.read_csv('C:/Users/brunn/Google Drive/Doutorado/Resultados/Artigo GRRS/Analise Final/tabela_kappa_T.csv')
+tabela1 = pd.read_csv('D:/Drive UFRN/Doutorado/Resultados/Artigo GRRS/Analise Final/tabela_acuracia_I.csv')
+tabela2 = pd.read_csv('D:/Drive UFRN/Doutorado/Resultados/Artigo GRRS/Analise Final/tabela_kappa_I.csv')
 
 nomes = ['Co-training - KNN', 
          'Co-training - LR', 
@@ -65,4 +65,4 @@ for i,c in enumerate(colunas):
     resultado2[nomes_colunas[i]] = tabela2[c]
 
 resultado = pd.concat([resultado1, resultado2])
-resultado.to_csv('C:/Users/brunn/Google Drive/Doutorado/Resultados/Artigo GRRS/Analise Final/tabela_transdutivo.csv', index=False)
+resultado.to_csv('D:/Drive UFRN/Doutorado/Resultados/Artigo GRRS/Analise Final/tabela_indutivo.csv', index=False)

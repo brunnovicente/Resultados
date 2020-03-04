@@ -2,8 +2,8 @@ import os
 import pandas as pd
 import numpy as np
 
-pastaT = 'C:/Users/brunn/Google Drive/Doutorado/Resultados/Artigo GRRS/Analise IND/'
-pastaI = 'C:/Users/brunn/Google Drive/Doutorado/Resultados/Artigo GRRS/Analise TRAN/'
+pastaT = 'D:/Drive UFRN/Doutorado/Resultados/Artigo GRRS/Analise TRAN/'
+pastaI = 'D:/Drive UFRN/Doutorado/Resultados/Artigo GRRS/Analise IND'
 
 caminhosT = [os.path.join(pastaT, nome) for nome in os.listdir(pastaT)]
 caminhosI = [os.path.join(pastaI, nome) for nome in os.listdir(pastaI)]
